@@ -41,6 +41,7 @@ RUN docker-php-ext-install \
     pdo_pgsql \
     zip \
     intl \
-    bcmath
+    bcmath \
+    pcntl
 
 RUN docker-php-ext-enable imagick

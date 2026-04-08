@@ -12,6 +12,7 @@ This repository provides a Docker image for PHP-FPM, designed for development an
 - intl
 - bcmath
 - imagick
+- pcntl
 
 ## Installed Tools
 - Composer
