@@ -4,7 +4,7 @@ ARG wwwdatauid=1000
 RUN usermod -u $wwwdatauid www-data
 
 # for componser cache
-RUN chown $wwwdataid:$wwwdatauid /var/www
+RUN chown $wwwdatauid:$wwwdatauid /var/www
 
 # Install composer in image
 COPY --from=composer:2.9.5 /usr/bin/composer /usr/local/bin/composer
@@ -16,15 +16,20 @@ COPY --from=composer:2.9.5 /usr/bin/composer /usr/local/bin/composer
 # libicu-dev - Required for intl extenstion
 # imagemagick - ImageMagick for generated images
 # libmagickwand-dev - ImageMagick for generated images
-RUN apt-get update
-RUN apt-get install -y -q --no-install-recommends \
+# AVIF/HEIF support for ImageMagick
+RUN apt-get update && apt-get install -y -q --no-install-recommends \
     libpq-dev \
     git \
     zip \
     libzip-dev \
     libicu-dev \
     imagemagick \
-    libmagickwand-dev
+    libmagickwand-dev \
+    libheif-dev \
+    libavif-dev \
+    libheif-plugin-aomenc \
+    libheif-plugin-aomdec \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pecl install imagick
 
