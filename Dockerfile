@@ -1,4 +1,4 @@
-FROM php:8.5.3-fpm-trixie
+FROM php:8.5.12-fpm-trixie
 
 ARG wwwdatauid=1000
 RUN usermod -u $wwwdatauid www-data
